@@ -1,0 +1,3 @@
+name: my-rest-api
+runtime: go
+description: A simple REST API with Lambda + API Gateway + DynamoDB
