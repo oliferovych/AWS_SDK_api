@@ -1,6 +1,6 @@
 SRCS := lambda.go
-BINARY := main
-ARCHIVE := main.zip
+BINARY := bootstrap
+ARCHIVE := bootstrap.zip
 
 all: build compress
 

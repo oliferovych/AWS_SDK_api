@@ -19,8 +19,8 @@ func main() {
 					Type: pulumi.String("S"),
 				},
 			},
-			HashKey:       pulumi.String("ID"),
-			BillingMode:   pulumi.String("PAY_PER_REQUEST"),
+			HashKey:     pulumi.String("ID"),
+			BillingMode: pulumi.String("PAY_PER_REQUEST"),
 		})
 		if err != nil {
 			return err
@@ -63,9 +63,9 @@ func main() {
 
 		// Create the Lambda function
 		myLambda, err := lambda.NewFunction(ctx, "myApiLambda", &lambda.FunctionArgs{
-			Runtime: pulumi.String("go1.x"),
-			Handler: pulumi.String("main"),
-			Code:    pulumi.NewFileArchive("../lambda/main.zip"),
+			Runtime: pulumi.String("provided.al2023"),
+			Handler: pulumi.String("bootstrap"),
+			Code:    pulumi.NewFileArchive("../lambda/bootstrap.zip"),
 			Role:    lambdaRole.Arn,
 			Environment: &lambda.FunctionEnvironmentArgs{
 				Variables: pulumi.StringMap{
@@ -113,7 +113,7 @@ func main() {
 		if err != nil {
 			return err
 		}
-		
+
 		_, err = apigatewayv2.NewRoute(ctx, "getRoute", &apigatewayv2.RouteArgs{
 			ApiId:    api.ID(),
 			RouteKey: pulumi.String("GET /"),
